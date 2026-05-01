@@ -1,3 +1,51 @@
+//adds a message to the console when the page is loaded
+ // Add a variable "pet_info" equal to a object with the name (string), weight (number), and happiness (number) of your pet
+ var pet_info = {name:"Dax", weight:30, happiness:50};
+
+
+  
+
+document.getElementById("log-info-button").addEventListener("click", function() {
+    console.info("This is an info message showing the pet's name, weight, and happiness: " + pet_info.name + ", " + pet_info.weight + ", " + pet_info.happiness);
+});
+document.getElementById("log-warn-button").addEventListener("click", function() {
+    console.warn("This is a warning message showing that the pet's weight is getting high: " + pet_info.weight);
+});
+document.getElementById("log-error-button").addEventListener("click", function() {
+    console.error("This is an error message showing that the name of the pet is not valid: ");
+});
+document.getElementById("log-table-button").addEventListener("click", function() {
+    console.table(pet_info);
+});
+document.getElementById("log-group-button").addEventListener("click", function() {
+    console.group("Group Name: dax");
+    console.log("Smart");
+    console.log("Althetic");
+    console.groupEnd();
+});
+document.getElementById("log-custom-button").addEventListener("click", function() {
+    console.log("%cThis is a custom log message which says: " + pet_info.name + " is the best!", "color: blue; font-weight: bold;");
+});  
+document.getElementById("cause-404-button").addEventListener("click", function() {
+    var img = new Image();
+    img.src = "nonexistent-image.jpg";
+});
+
+document.getElementById("cause-typeerror-button").addEventListener("click", function() {
+    try {
+        null.myProperty;
+    } catch (e) {
+        console.error(e);
+    }
+});
+
+document.getElementById("cause-violation-button").addEventListener("click", function() {
+    setTimeout(function() {
+        var start = Date.now();
+        while (Date.now() - start < 1000) {}
+    }, 0);
+});
+
 $(function() { // Makes sure that your function is called once all the DOM elements of the page are ready to be used.
     
     // Called function to update the name, happiness, and weight of our pet in our HTML
@@ -13,10 +61,7 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
   
   
   })
-  
-    // Add a variable "pet_info" equal to a object with the name (string), weight (number), and happiness (number) of your pet
-    var pet_info = {name:"Dax", weight:30, happiness:50};
-  
+   
     function clickedTreatButton() {
       pet_info['happiness'] = pet_info['happiness'] + 10;
       pet_info['weight'] = pet_info['weight'] + 5;

@@ -69,7 +69,8 @@
   
   .button-container button {
     width: 100px;
-      margin-right: 10px;
+
+    margin-right: 10px;
       text-align: center;
       display: inline-block;
       float: left;
