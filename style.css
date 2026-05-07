@@ -1,86 +1,201 @@
+/*style.css  —  GigaPet | Minecraft Theme*/
+
+/* Minecraft pixel font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 * {
-    box-sizing: border-box;
-  }
-  
-  body {
-    font-family: helvetica, arial, sans-serif;
-    margin: 25px;
-  }
-  
-  main {
-    display:block;
-    height:175px;
-  }
-  
-  header {
-    border-bottom: 1px solid black;
-  }
-  
-  h1 {
-    font-weight: bold;
-    color: #000;
-  }
-  
-  .bold {
-    font-weight: bold;
-  }
-  
-  p {
-    max-width: 600px;
-  }
-  
-  
-  li {
-    margin-bottom: 5px;
-  }
-  
-  footer {
-    padding-top: 25px;
-    border-top: 1px solid black;
-  }
-  
-  footer a {
-    float:left;
-    margin:5px;
-  }
-  
-  .pet-image {
-    height:250px;
-  }
-  
-  .dashboard div {
-    display:block;
-  }
-  
-  .pet-image-container {
-    float:left;
-    padding:10px;
-  }
-  
-  .dashboard {
-    float:left;
-    padding:20px;
-  }
-  
-  .button-container {
-    margin-top:20px;
-  }
-  
-  .button-container button {
-    width: 100px;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-    margin-right: 10px;
-      text-align: center;
-      display: inline-block;
-      float: left;
-    font-size:15px;
-    background-color: #1e2835;
-    border-color: #404853;
-    cursor:pointer;
-    background-image: linear-gradient(to bottom,rgba(246,246,246,.1)0%,rgba(30,40,53,0)66%);
-    color: #fafafa;
-  }
-  .pet-message {
-    display: none;
-  }
+/* BODY — tiled dirt block background like the Minecraft main menu*/
+body {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 12px;
+
+  /* Dirt block tile pattern using layered gradients */
+  background-color: #866043;
+  background-image:
+    /* horizontal dark lines every 32px */
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0px, transparent 31px,
+      rgba(0,0,0,0.35) 31px, rgba(0,0,0,0.35) 32px
+    ),
+    /* vertical dark lines every 32px */
+    repeating-linear-gradient(
+      to right,
+      transparent 0px, transparent 31px,
+      rgba(0,0,0,0.35) 31px, rgba(0,0,0,0.35) 32px
+    ),
+    /* lighter top-left pixel highlight per block */
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.07) 0px, rgba(255,255,255,0.07) 3px,
+      transparent 3px, transparent 32px
+    ),
+    repeating-linear-gradient(
+      to right,
+      rgba(255,255,255,0.07) 0px, rgba(255,255,255,0.07) 3px,
+      transparent 3px, transparent 32px
+    );
+  background-size: 32px 32px;
+
+  min-height: 100vh;
+  padding: 24px 16px 40px;
+  image-rendering: pixelated;
+}
+
+/*HEADER*/
+header {
+  text-align: center;
+  margin-bottom: 28px;
+  padding-bottom: 16px;
+  /* grass-block green top border */
+  border-bottom: 4px solid #5C8A1E;
+  /* extra dirt-coloured shadow below the grass strip */
+  box-shadow: 0 4px 0 #4a6e18;
+}
+
+header h1 {
+  font-size: 20px;
+  color: #FFFF55;           /* Minecraft yellow title colour */
+  text-shadow: 3px 3px 0 #3f3f00, -1px -1px 0 #3f3f00;
+  letter-spacing: 2px;
+  line-height: 1.4;
+}
+
+/*MAIN LAYOUT*/
+main {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  align-items: flex-start;
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+/* PET IMAGE — wooden frame border*/
+.pet-image-container {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pet-image {
+  height: 250px;
+  width: 250px;
+  object-fit: cover;
+  image-rendering: pixelated;
+
+  /* layered border mimics a Minecraft item frame:
+     outer dark wood → mid grain → inner highlight */
+  border: 6px solid #4a2f00;
+  outline: 4px solid #7a4f1a;
+  box-shadow:
+    0 0 0 8px #5c3a0e,
+    4px 4px 0 10px #3a2000,
+    inset 2px 2px 0 #c8a060;
+}
+
+/*PET MESSAGE — Minecraft chat*/
+.pet-message {
+  display: none;
+  margin-top: 14px;
+  background: #ffffcc;           /* bright yellow parchment — easy to read */
+  color: #1a1a1a;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 8px;
+  line-height: 2;
+  padding: 12px 16px;
+  border-top:    3px solid #ffffff;
+  border-left:   3px solid #ffffff;
+  border-right:  3px solid #888;
+  border-bottom: 3px solid #888;
+  text-shadow: none;
+  max-width: 250px;
+  text-align: center;
+}
+
+/*DASHBOARD — Minecraft inventory / GUI panel */
+.dashboard {
+  flex: 1 1 300px;
+  max-width: 420px;
+
+  background: #c6c6c6;           /* stone GUI grey */
+  border-top:    3px solid #ffffff;
+  border-left:   3px solid #ffffff;
+  border-right:  3px solid #555555;
+  border-bottom: 3px solid #555555;
+  padding: 20px;
+}
+
+/* Each stat line */
+.dashboard > div {
+  display: block;
+  color: #1a1a1a;
+  font-size: 8px;
+  line-height: 1;
+  margin-bottom: 14px;
+  text-shadow: 1px 1px 0 rgba(255,255,255,0.4);
+}
+
+.dashboard strong {
+  color: #4a2f00;
+}
+
+/* BUTTON CONTAINER */
+.button-container {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+
+ /*BUTTONS — classic Minecraft stone GUI button style*/
+
+.button-container button {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 8px;
+  color: #ffffff;
+  text-shadow: 2px 2px 0 #3f3f3f;
+
+  width: 100px;
+  padding: 10px 6px;
+  cursor: pointer;
+
+  /* stone button face */
+  background: #828282;
+
+  /* raised 3-D bevel — bright top/left, dark bottom/right */
+  border-top:    3px solid #c8c8c8;
+  border-left:   3px solid #c8c8c8;
+  border-right:  3px solid #373737;
+  border-bottom: 3px solid #373737;
+
+  outline: none;
+  transition: filter 0.1s;
+}
+
+/* hover — Minecraft's green highlight tint */
+.button-container button:hover {
+  background: #7c9d50;
+  border-top-color:   #a8d060;
+  border-left-color:  #a8d060;
+  border-right-color: #2a4a10;
+  border-bottom-color:#2a4a10;
+  color: #ffffaa;
+}
+
+/* pressed — invert the bevel to sink the button */
+.button-container button:active {
+  border-top-color:    #373737;
+  border-left-color:   #373737;
+  border-right-color:  #c8c8c8;
+  border-bottom-color: #c8c8c8;
+  filter: brightness(0.9);
+}

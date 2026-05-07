@@ -1,10 +1,9 @@
-//adds a message to the console when the page is loaded
  // Add a variable "pet_info" equal to a object with the name (string), weight (number), and happiness (number) of your pet
  var pet_info = {name:"Dax", weight:30, happiness:50};
 
 
   
-
+//made buttons to oress an log message to the console when clicked. Each button will log a different type of message (info, warning, error, table, group, custom) and will also log different information about your pet. I also added buttons to cause a 404 error, a TypeError, and a violation of the "long task" rule in the console.
 document.getElementById("log-info-button").addEventListener("click", function() {
     console.info("This is an info message showing the pet's name, weight, and happiness: " + pet_info.name + ", " + pet_info.weight + ", " + pet_info.happiness);
 });
@@ -46,7 +45,7 @@ document.getElementById("cause-violation-button").addEventListener("click", func
     }, 0);
 });
 
-$(function() { // Makes sure that your function is called once all the DOM elements of the page are ready to be used.
+$(function() {
     
     // Called function to update the name, happiness, and weight of our pet in our HTML
     checkAndUpdatePetInfoInHtml();
@@ -120,7 +119,6 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
     }
     }
     
-    // Updates your HTML with the current values in your pet_info object
     function updatePetInfoInHtml() {
       $('.name').text(pet_info['name']);
       $('.weight').text(pet_info['weight']);
